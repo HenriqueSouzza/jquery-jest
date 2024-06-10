@@ -6,7 +6,7 @@ describe('form.js', () => {
   })
 
   it('should call false with the inputs empty"', () => {
-    require('../form.js');
+    require('./form.js');
     expect($.makeLogin()).toBe(false);
   });
 
@@ -14,7 +14,7 @@ describe('form.js', () => {
     $('#username').val('henrique');
     $('#password').val('123');
 
-    require('../form.js');
+    require('./form.js');
     expect($.makeLogin()).toBe(true);
   });
 })
