@@ -12,7 +12,7 @@ const Feedback = {
 
 const userListPermitted = [
   {
-    user: 'henrique',
+    username: 'henrique',
     password: '123'
   }
 ];
@@ -21,18 +21,14 @@ $.getInputValues = () => {
   return Elements.form.serializeArray();
 }
 
-$.filterValues = (values = {}) => {
-  return { ...values, user: values.username }
-}
-
 $.mergeInputValues = (inputValues = []) => {
   const values = {}
   inputValues.forEach(inputValue => values[inputValue.name] = inputValue.value);
   return values;
 }
 
-$.isUserPermitted = (user = null, password = null) => {
-  return userListPermitted.find(userPermitted => userPermitted.user == user && userPermitted.password == password)
+$.isUserPermitted = ({ username = null, password = null }) => {
+  return !!userListPermitted.find(userPermitted => userPermitted.username == username && userPermitted.password == password)
 }
 
 $.makeLogin = () => {
@@ -42,13 +38,11 @@ $.makeLogin = () => {
     return false;
   }
 
-  const values = $.filterValues($.mergeInputValues(inputValues));
-
-  return !!$.isUserPermitted(values.user, values.password);
+  return $.isUserPermitted($.mergeInputValues(inputValues));
 }
 
-$.setHtmlFeedback = (isError = false) => {
-  Elements.sectionFeedback.fadeIn().text(isError ? Feedback.error : Feedback.success);
+$.setHtmlFeedback = (isSucess = true) => {
+  Elements.sectionFeedback.fadeIn().text(isSucess ? Feedback.success : Feedback.error);
 }
 
 Elements.button.on('click', function (e) {
