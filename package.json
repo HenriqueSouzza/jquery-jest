@@ -1,0 +1,20 @@
+{
+  "author": "HenriqueDev",
+  "name": "jquery-jest",
+  "version": "1.0.0",
+  "main": "script.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --config=jest.config.js",
+    "test-coverage": "jest --config=jest.config.js --coverage"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
