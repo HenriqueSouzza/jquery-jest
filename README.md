@@ -40,3 +40,7 @@ Rodar teste com report coverage
 ```bash
 Yarn test-coverage
 ```
+
+## Where are files test
+
+* ./Js
