@@ -1,12 +1,13 @@
 import { generateForm } from '../__mock__/html';
+import Mocks from '../__mock__/data';
 
 describe('form.js', () => {
   beforeAll(() => {
     document.body.innerHTML = generateForm({ username: '', password: '' });
-  })
+    require('./form.js');
+  });
 
   it('should call false with the inputs empty"', () => {
-    require('./form.js');
     expect($.makeLogin()).toBe(false);
   });
 
@@ -14,7 +15,18 @@ describe('form.js', () => {
     $('#username').val('henrique');
     $('#password').val('123');
 
-    require('./form.js');
     expect($.makeLogin()).toBe(true);
+  });
+
+  it('should convert input values array to object', () => {
+    expect($.mergeInputValues(Mocks.inputValues.initials)).toEqual(Mocks.inputValues.expected);
+  });
+
+  it('should call true when it sent data permitted', () => {
+    expect($.isUserPermitted(Mocks.inputValues.userPermitted)).toBeTruthy();
+  });
+
+  it('should call false when it sent data not permitted', () => {
+    expect($.isUserPermitted(Mocks.inputValues.userNotPermitted)).toBeFalsy();
   });
 })
